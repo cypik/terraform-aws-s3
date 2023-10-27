@@ -32,7 +32,7 @@ module "subnets" {
   name               = "subnet"
   environment        = local.environment
   availability_zones = local.availability_zones
-  vpc_id             = module.vpc.vpc_id
+  vpc_id             = module.vpc.id
   cidr_block         = module.vpc.vpc_cidr_block
   type               = "private"
   igw_id             = module.vpc.igw_id
@@ -96,13 +96,13 @@ module "s3_bucket" {
   vpc_endpoints = [
     {
       endpoint_count = 1
-      vpc_id         = module.vpc.vpc_id
+      vpc_id         = module.vpc.id
       service_type   = "Interface"
       subnet_ids     = module.subnets.private_subnet_id
     },
     {
       endpoint_count = 2
-      vpc_id         = module.vpc.vpc_id
+      vpc_id         = module.vpc.id
       service_type   = "Gateway"
     }
   ]
