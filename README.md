@@ -1,4 +1,4 @@
-# Terraform-aws-s3 
+# Terraform-aws-s3
 
 # AWS Infrastructure Provisioning with Terraform
 

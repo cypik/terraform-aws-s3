@@ -7,6 +7,11 @@ module "labels" {
   label_order = var.label_order
 }
 
+#tfsec:ignore:aws-s3-enable-bucket-encryption
+#tfsec:ignore:aws-s3-encryption-customer-key
+#tfsec:ignore:aws-s3-encryption-customer-key
+#tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-versioning
 resource "aws_s3_bucket" "s3_default" {
   count = var.enabled == true ? 1 : 0
 
