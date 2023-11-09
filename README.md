@@ -10,7 +10,7 @@
 - [License](#license)
 
 ## Introduction
-This project deploys a Google Cloud infrastructure using Terraform to create aws-s3 .
+This project deploys aws infrastructure using Terraform to create aws-s3 .
 ## Usage
 To use this module, you should have Terraform installed and configured for AWS. This module provides the necessary Terraform configuration for creating AWS resources, and you can customize the inputs as needed. Below is an example of how to use this module:
 ## Examples
@@ -32,7 +32,7 @@ module "s3_bucket" {
 ## Example: s3 complete
 ```hcl
 module "s3_bucket" {
-  source = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
   name        = "arcx-13"
   environment = local.environment
   label_order = local.label_order
@@ -56,7 +56,7 @@ module "s3_bucket" {
     years = null
   }
 
-  versioning = true
+  versioning    = true
   vpc_endpoints = [
     {
       endpoint_count = 1
