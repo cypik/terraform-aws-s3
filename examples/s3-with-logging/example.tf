@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  environment = "test"
+  environment = "test11"
   label_order = ["name", "environment"]
 }
 
@@ -11,7 +11,7 @@ module "logging_bucket" {
   source = "./../../"
 
   name        = "logging-s3-test"
-  s3_name     = "zanq"
+  s3_name     = "zanq11"
   environment = local.environment
   label_order = local.label_order
   acl         = "log-delivery-write"
