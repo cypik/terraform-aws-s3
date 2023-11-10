@@ -243,8 +243,7 @@ module "s3_bucket" {
 
 ```hcl
 module "s3_bucket" {
-  source = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
-
+  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-encryption-bucket"
   s3_name     = "dmzx"
   environment = local.environment
@@ -278,7 +277,7 @@ depends_on    = [module.logging_bucket]
 
 ```hcl
 module "s3_bucket" {
-  source = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-logging-encryption-bucket"
   s3_name     = "aqua"
   environment = local.environment
@@ -415,4 +414,4 @@ For detailed examples on how to use this module, please refer to the 'examples' 
 Your Name Replace '[License Name]' and '[Your Name]' with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/opz0/terraform-aws-s3.git/blob/readme/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/opz0/terraform-aws-s3/blob/master/LICENSE) file for details.
