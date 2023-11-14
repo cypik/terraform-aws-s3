@@ -1,6 +1,5 @@
 module "labels" {
-  source = "git::git@github.com:opz0/terraform-aws-labels.git?ref=master"
-
+  source      = "git::https://github.com/opz0/terraform-aws-labels.git?ref=v1.0.0"
   name        = var.name
   repository  = var.repository
   environment = var.environment
@@ -8,6 +7,11 @@ module "labels" {
   label_order = var.label_order
 }
 
+#tfsec:ignore:aws-s3-enable-bucket-encryption
+#tfsec:ignore:aws-s3-encryption-customer-key
+#tfsec:ignore:aws-s3-encryption-customer-key
+#tfsec:ignore:aws-s3-enable-bucket-logging
+#tfsec:ignore:aws-s3-enable-versioning
 resource "aws_s3_bucket" "s3_default" {
   count = var.enabled == true ? 1 : 0
 

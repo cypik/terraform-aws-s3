@@ -3,13 +3,13 @@ provider "aws" {
 }
 
 locals {
-  environment = "test"
+  environment = "test11"
   label_order = ["name", "environment"]
 }
 
 module "kms_key" {
-  source      = "git::git@github.com:opz0/terraform-aws-kms.git?ref=master"
-  name        = "kms"
+  source      = "git::https://github.com/opz0/terraform-aws-kms.git?ref=v1.0.0"
+  name        = "kms11"
   environment = local.environment
   label_order = local.label_order
 

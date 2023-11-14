@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 locals {
-  environment        = "test"
+  environment        = "test11"
   label_order        = ["name", "environment"]
   availability_zones = ["eu-west-1a", "eu-west-1b"]
 }
@@ -21,14 +21,14 @@ module "logging_bucket" {
 }
 
 module "vpc" {
-  source      = "git::git@github.com:opz0/terraform-aws-vpc.git?ref=master"
+  source      = "git::https://github.com/opz0/terraform-aws-vpc.git?ref=v1.0.0"
   name        = "app"
   environment = local.environment
   cidr_block  = "172.16.0.0/16"
 }
 
 module "subnets" {
-  source             = "git::git@github.com:opz0/terraform-aws-subnet.git?ref=master"
+  source             = "git::https://github.com/opz0/terraform-aws-subnet.git?ref=v1.0.0"
   name               = "subnet"
   environment        = local.environment
   availability_zones = local.availability_zones
@@ -40,8 +40,8 @@ module "subnets" {
 }
 
 module "kms_key" {
-  source                  = "git::git@github.com:opz0/terraform-aws-kms.git?ref=master"
-  name                    = "kms"
+  source                  = "git::https://github.com/opz0/terraform-aws-kms.git?ref=v1.0.0"
+  name                    = "kms11"
   environment             = local.environment
   label_order             = local.label_order
   enabled                 = true
