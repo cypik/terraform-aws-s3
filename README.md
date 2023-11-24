@@ -19,7 +19,7 @@ To use this module, you should have Terraform installed and configured for AWS. 
 
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -32,7 +32,7 @@ module "s3_bucket" {
 ## Example: s3 complete
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "arcx-13"
   environment = local.environment
   label_order = local.label_order
@@ -221,7 +221,7 @@ module "s3_bucket" {
 
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -243,7 +243,7 @@ module "s3_bucket" {
 
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-encryption-bucket"
   s3_name     = "dmzx"
   environment = local.environment
@@ -260,7 +260,7 @@ module "s3_bucket" {
 
 ```hcl
 module "s3_bucket" {
-source        = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+source        = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
 name          = "test-logging-bucket"
 s3_name       = "wewrrt"
 environment   = local.environment
@@ -277,7 +277,7 @@ depends_on    = [module.logging_bucket]
 
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-logging-encryption-bucket"
   s3_name     = "aqua"
   environment = local.environment
@@ -299,7 +299,7 @@ module "s3_bucket" {
 
 ```hcl
 module "s3_bucket" {
-  source      = "git::https://github.com/opz0/terraform-aws-s3.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-s3.git?ref=v1.0.0"
   name        = "test-s3"
   s3_name     = "poxord"
   environment = local.environment
@@ -408,10 +408,10 @@ module "s3_bucket" {
 - Other relevant security group outputs (modify as needed).
 
 ## Examples
-For detailed examples on how to use this module, please refer to the 'examples' directory within this repository.
+For detailed examples on how to use this module, please refer to the [Examples](https://github.com/cypik/terraform-aws-s3/tree/master/examples) directory within this repository.
 
 ## Author
 Your Name Replace '[License Name]' and '[Your Name]' with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
 
 ## License
-This project is licensed under the MIT License - see the [LICENSE](https://github.com/opz0/terraform-aws-s3/blob/master/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/cypik/terraform-aws-s3/blob/master/LICENSE) file for details.
