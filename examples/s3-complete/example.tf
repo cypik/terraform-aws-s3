@@ -21,14 +21,14 @@ module "logging_bucket" {
 }
 
 module "vpc" {
-  source      = "git::https://github.com/opz0/terraform-aws-vpc.git?ref=v1.0.0"
+  source      = "git::https://github.com/cypik/terraform-aws-vpc.git?ref=v1.0.0"
   name        = "app"
   environment = local.environment
   cidr_block  = "172.16.0.0/16"
 }
 
 module "subnets" {
-  source             = "git::https://github.com/opz0/terraform-aws-subnet.git?ref=v1.0.0"
+  source             = "git::https://github.com/cypik/terraform-aws-subnet.git?ref=v1.0.0"
   name               = "subnet"
   environment        = local.environment
   availability_zones = local.availability_zones
@@ -40,7 +40,7 @@ module "subnets" {
 }
 
 module "kms_key" {
-  source                  = "git::https://github.com/opz0/terraform-aws-kms.git?ref=v1.0.0"
+  source                  = "git::https://github.com/cypik/terraform-aws-kms.git?ref=v1.0.0"
   name                    = "kms11"
   environment             = local.environment
   label_order             = local.label_order
