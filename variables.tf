@@ -18,13 +18,13 @@ variable "environment" {
 
 variable "label_order" {
   type        = list(any)
-  default     = []
-  description = "Label order, e.g. `name`,`application`."
+  default     = ["name", "environment"]
+  description = "Label order, e.g. `name`,`Environment`."
 }
 
 variable "managedby" {
   type        = string
-  default     = ""
+  default     = "cypik"
   description = "ManagedBy, eg 'cypik'."
 }
 

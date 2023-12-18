@@ -10,7 +10,7 @@
 - [License](#license)
 
 ## Introduction
-This project deploys aws infrastructure using Terraform to create aws-s3 .
+This module is basically combination of Terraform open source and includes automatation tests and examples. It also helps to create and improve your infrastructure with minimalistic code instead of maintaining the whole infrastructure code yourself.
 ## Usage
 To use this module, you should have Terraform installed and configured for AWS. This module provides the necessary Terraform configuration for creating AWS resources, and you can customize the inputs as needed. Below is an example of how to use this module:
 ## Examples
