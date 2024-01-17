@@ -1,11 +1,13 @@
 module "labels" {
-  source      = "git::https://github.com/cypik/terraform-aws-labels.git?ref=v1.0.0"
+  source      = "cypik/labels/aws"
+  version     = "1.0.1"
   name        = var.name
   repository  = var.repository
   environment = var.environment
   managedby   = var.managedby
   label_order = var.label_order
 }
+
 
 #tfsec:ignore:aws-s3-enable-bucket-encryption
 #tfsec:ignore:aws-s3-encryption-customer-key
