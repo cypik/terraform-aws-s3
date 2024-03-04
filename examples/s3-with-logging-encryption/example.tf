@@ -18,7 +18,8 @@ module "logging_bucket" {
 }
 
 module "kms_key" {
-  source      = "git::https://github.com/cypik/terraform-aws-kms.git?ref=v1.0.0"
+  source      = "cypik/kms/aws"
+  version     = "1.0.1"
   name        = "kms12"
   environment = local.environment
   label_order = local.label_order

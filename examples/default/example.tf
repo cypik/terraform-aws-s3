@@ -8,8 +8,7 @@ locals {
 }
 
 module "s3_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order

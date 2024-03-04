@@ -8,11 +8,11 @@ locals {
 }
 
 module "kms_key" {
-  source      = "git::https://github.com/cypik/terraform-aws-kms.git?ref=v1.0.0"
-  name        = "kms11"
-  environment = local.environment
-  label_order = local.label_order
-
+  source                  = "cypik/kms/aws"
+  version                 = "1.0.1"
+  name                    = "kms11"
+  environment             = local.environment
+  label_order             = local.label_order
   enabled                 = true
   description             = "KMS key for s3"
   deletion_window_in_days = 7
@@ -36,8 +36,7 @@ data "aws_iam_policy_document" "default" {
 }
 
 module "s3_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "test-encryption-bucket"
   s3_name     = "dmzx"
   environment = local.environment
