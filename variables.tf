@@ -128,10 +128,46 @@ variable "bucket_prefix" {
   description = " (Optional, Forces new resource) Creates a unique bucket name beginning with the specified prefix."
 }
 
-variable "expected_bucket_owner" {
+variable "grantee_email" {
+  description = "(Optional) Email address of the grantee."
   type        = string
   default     = null
-  description = "The account ID of the expected bucket owner"
+}
+
+variable "grantee_id" {
+  description = "(Optional) Canonical user ID of the grantee."
+  type        = string
+  default     = null
+}
+
+variable "grantee_type" {
+  description = "(Optional) Type of the grantee. Valid values: CanonicalUser, AmazonCustomerByEmail, Group."
+  type        = string
+  default     = "CanonicalUser" # Default value
+}
+
+variable "grantee_uri" {
+  description = "(Optional) URI of the grantee group."
+  type        = string
+  default     = null
+}
+
+variable "target_grant_permission" {
+  description = "(Optional) Permissions granted to the grantee for the bucket. Valid values: FULL_CONTROL, READ, WRITE."
+  type        = string
+  default     = "FULL_CONTROL" # Default value
+}
+
+variable "object_size_greater_than" {
+  description = "(Optional) Minimum object size for transitions."
+  type        = number
+  default     = 128000 # 128KB by default
+}
+
+variable "object_size_less_than" {
+  description = "(Optional) Maximum object size for transitions."
+  type        = number
+  default     = null
 }
 
 variable "owner" {
@@ -351,4 +387,10 @@ variable "mfa" {
   type        = string
   default     = null
   description = "Optional, Required if versioning_configuration mfa_delete is enabled) Concatenation of the authentication device's serial number, a space, and the value that is displayed on your authentication device."
+}
+
+variable "expected_bucket_owner" {
+  description = "(Optional) Account ID of the expected bucket owner."
+  type        = string
+  default     = null
 }

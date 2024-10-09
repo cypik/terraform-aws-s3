@@ -23,7 +23,7 @@ To use this module, you should have Terraform installed and configured for AWS. 
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -37,7 +37,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "arcx-13"
   environment = local.environment
   label_order = local.label_order
@@ -227,7 +227,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -250,7 +250,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-encryption-bucket"
   s3_name     = "dmzx"
   environment = local.environment
@@ -268,7 +268,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-logging-bucket"
 s3_name       = "wewrrt"
 environment   = local.environment
@@ -286,7 +286,7 @@ depends_on    = [module.logging_bucket]
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-logging-encryption-bucket"
   s3_name     = "aqua"
   environment = local.environment
@@ -309,7 +309,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = "test-s3"
   s3_name     = "poxord"
   environment = local.environment
@@ -414,20 +414,20 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.6.6 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >= 5.32.1 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.9.5 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | >=5.67.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | >= 5.32.1 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | 5.70.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/aws | 1.0.1 |
+| <a name="module_labels"></a> [labels](#module\_labels) | cypik/labels/aws | 1.0.2 |
 
 ## Resources
 
@@ -478,8 +478,12 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="input_enable_server_side_encryption"></a> [enable\_server\_side\_encryption](#input\_enable\_server\_side\_encryption) | Enable enable\_server\_side\_encryption | `bool` | `false` | no |
 | <a name="input_enabled"></a> [enabled](#input\_enabled) | Conditionally create S3 bucket. | `bool` | `true` | no |
 | <a name="input_environment"></a> [environment](#input\_environment) | Environment (e.g. `prod`, `dev`, `staging`). | `string` | `""` | no |
-| <a name="input_expected_bucket_owner"></a> [expected\_bucket\_owner](#input\_expected\_bucket\_owner) | The account ID of the expected bucket owner | `string` | `null` | no |
+| <a name="input_expected_bucket_owner"></a> [expected\_bucket\_owner](#input\_expected\_bucket\_owner) | (Optional) Account ID of the expected bucket owner. | `string` | `null` | no |
 | <a name="input_force_destroy"></a> [force\_destroy](#input\_force\_destroy) | A boolean that indicates all objects should be deleted from the bucket so that the bucket can be destroyed without error. These objects are not recoverable. | `bool` | `false` | no |
+| <a name="input_grantee_email"></a> [grantee\_email](#input\_grantee\_email) | (Optional) Email address of the grantee. | `string` | `null` | no |
+| <a name="input_grantee_id"></a> [grantee\_id](#input\_grantee\_id) | (Optional) Canonical user ID of the grantee. | `string` | `null` | no |
+| <a name="input_grantee_type"></a> [grantee\_type](#input\_grantee\_type) | (Optional) Type of the grantee. Valid values: CanonicalUser, AmazonCustomerByEmail, Group. | `string` | `"CanonicalUser"` | no |
+| <a name="input_grantee_uri"></a> [grantee\_uri](#input\_grantee\_uri) | (Optional) URI of the grantee group. | `string` | `null` | no |
 | <a name="input_grants"></a> [grants](#input\_grants) | ACL Policy grant.conflict with acl.set acl null to use this | <pre>list(object({<br>    id          = string<br>    type        = string<br>    permissions = list(string)<br>    uri         = string<br>  }))</pre> | `null` | no |
 | <a name="input_ignore_public_acls"></a> [ignore\_public\_acls](#input\_ignore\_public\_acls) | Whether Amazon S3 should ignore public ACLs for this bucket. | `bool` | `true` | no |
 | <a name="input_intelligent_tiering"></a> [intelligent\_tiering](#input\_intelligent\_tiering) | Map containing intelligent tiering configuration. | `any` | `{}` | no |
@@ -496,6 +500,8 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="input_object_lock_configuration"></a> [object\_lock\_configuration](#input\_object\_lock\_configuration) | With S3 Object Lock, you can store objects using a write-once-read-many (WORM) model. Object Lock can help prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. | <pre>object({<br>    mode  = string<br>    days  = number<br>    years = number<br>  })</pre> | `null` | no |
 | <a name="input_object_lock_enabled"></a> [object\_lock\_enabled](#input\_object\_lock\_enabled) | Whether S3 bucket should have an Object Lock configuration enabled. | `bool` | `false` | no |
 | <a name="input_object_ownership"></a> [object\_ownership](#input\_object\_ownership) | Object ownership. Valid values: BucketOwnerEnforced, BucketOwnerPreferred or ObjectWriter. 'BucketOwnerEnforced': ACLs are disabled, and the bucket owner automatically owns and has full control over every object in the bucket. 'BucketOwnerPreferred': Objects uploaded to the bucket change ownership to the bucket owner if the objects are uploaded with the bucket-owner-full-control canned ACL. 'ObjectWriter': The uploading account will own the object if the object is uploaded with the bucket-owner-full-control canned ACL. | `string` | `"ObjectWriter"` | no |
+| <a name="input_object_size_greater_than"></a> [object\_size\_greater\_than](#input\_object\_size\_greater\_than) | (Optional) Minimum object size for transitions. | `number` | `128000` | no |
+| <a name="input_object_size_less_than"></a> [object\_size\_less\_than](#input\_object\_size\_less\_than) | (Optional) Maximum object size for transitions. | `number` | `null` | no |
 | <a name="input_only_https_traffic"></a> [only\_https\_traffic](#input\_only\_https\_traffic) | This veriables use for only https traffic. | `bool` | `true` | no |
 | <a name="input_owner"></a> [owner](#input\_owner) | Bucket owner's display name and ID. Conflicts with `acl` | `map(string)` | `{}` | no |
 | <a name="input_owner_id"></a> [owner\_id](#input\_owner\_id) | The canonical user ID associated with the AWS account. | `string` | `""` | no |
@@ -506,6 +512,7 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="input_s3_name"></a> [s3\_name](#input\_s3\_name) | name of s3 bucket | `string` | `null` | no |
 | <a name="input_sse_algorithm"></a> [sse\_algorithm](#input\_sse\_algorithm) | The server-side encryption algorithm to use. Valid values are AES256 and aws:kms. | `string` | `"AES256"` | no |
 | <a name="input_target_bucket"></a> [target\_bucket](#input\_target\_bucket) | The bucket where you want Amazon S3 to store server access logs. | `string` | `""` | no |
+| <a name="input_target_grant_permission"></a> [target\_grant\_permission](#input\_target\_grant\_permission) | (Optional) Permissions granted to the grantee for the bucket. Valid values: FULL\_CONTROL, READ, WRITE. | `string` | `"FULL_CONTROL"` | no |
 | <a name="input_target_prefix"></a> [target\_prefix](#input\_target\_prefix) | A prefix for all log object keys. | `string` | `""` | no |
 | <a name="input_timeouts"></a> [timeouts](#input\_timeouts) | Define maximum timeout for creating, updating, and deleting VPC endpoint resources | `map(string)` | `{}` | no |
 | <a name="input_versioning"></a> [versioning](#input\_versioning) | Enable Versioning of S3. | `bool` | `true` | no |
@@ -527,4 +534,5 @@ This project is licensed under the **MIT** License - see the [LICENSE](https://g
 | <a name="output_s3_bucket_website_domain"></a> [s3\_bucket\_website\_domain](#output\_s3\_bucket\_website\_domain) | The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records. |
 | <a name="output_s3_bucket_website_endpoint"></a> [s3\_bucket\_website\_endpoint](#output\_s3\_bucket\_website\_endpoint) | The website endpoint, if the bucket is configured with a website. If not, this will be an empty string. |
 | <a name="output_tags"></a> [tags](#output\_tags) | A mapping of tags to assign to the resource. |
+| <a name="output_transition_default_minimum_object_size"></a> [transition\_default\_minimum\_object\_size](#output\_transition\_default\_minimum\_object\_size) | Default minimum object size for lifecycle transitions. |
 <!-- END_TF_DOCS -->

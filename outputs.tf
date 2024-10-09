@@ -47,3 +47,11 @@ output "s3_bucket_website_domain" {
   value       = try(aws_s3_bucket_website_configuration.this[0].website_domain, "")
   description = "The domain of the website endpoint, if the bucket is configured with a website. If not, this will be an empty string. This is used to create Route 53 alias records."
 }
+
+output "transition_default_minimum_object_size" {
+  description = "Default minimum object size for lifecycle transitions."
+  value = {
+    greater_than = var.object_size_greater_than
+    less_than    = var.object_size_less_than
+  }
+}
