@@ -13,12 +13,12 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: '3.x'
+#          python-version: '3.x'
       - name: Run pre-commit
         uses: pre-commit/action@v3.0.0
         with:
           # Optional: Specify a specific Python version
-          python_version: '3.x'
+#          python_version: '3.x'
         # Ensure all actions are up-to-date
         env:
           PRE_COMMIT_HOME: /tmp/.cache/pre-commit

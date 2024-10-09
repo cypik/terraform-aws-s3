@@ -26,10 +26,10 @@ module "replica_bucket" {
   providers = {
     aws = aws.replica
   }
-  name            = "test-s3-replica"
+  name        = "test-s3-replica"
   s3_name     = "antil"
-  environment     = local.environment
-  label_order     = local.label_order
+  environment = local.environment
+  label_order = local.label_order
   acl         = "private"
   versioning  = true
 }
