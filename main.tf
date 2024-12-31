@@ -1,6 +1,6 @@
 module "labels" {
   source      = "cypik/labels/aws"
-  version     = "1.0.1"
+  version     = "1.0.2"
   name        = var.name
   repository  = var.repository
   environment = var.environment
@@ -90,11 +90,29 @@ resource "aws_s3_bucket_versioning" "example" {
 }
 
 resource "aws_s3_bucket_logging" "example" {
-  count  = var.enabled && var.logging == true ? 1 : 0
-  bucket = join("", aws_s3_bucket.s3_default[*].id)
+  count  = var.enabled && var.logging ? 1 : 0
+  bucket = aws_s3_bucket.s3_default[0].id # Use the first element of the bucket list
 
-  target_bucket = var.target_bucket
-  target_prefix = var.target_prefix
+  target_bucket         = var.target_bucket
+  target_prefix         = var.target_prefix
+  expected_bucket_owner = var.expected_bucket_owner
+
+  dynamic "target_grant" {
+    for_each = var.grantee_email != null ? [1] : []
+    content {
+      grantee {
+        email_address = var.grantee_email
+        id            = var.grantee_id
+        type          = var.grantee_type
+        uri           = var.grantee_uri
+      }
+      permission = var.target_grant_permission
+    }
+  }
+
+  target_object_key_format {
+    simple_prefix {}
+  }
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "example" {
@@ -345,11 +363,18 @@ resource "aws_s3_bucket_lifecycle_configuration" "default" {
           expired_object_delete_marker = try(expiration.value.expired_object_delete_marker, null)
         }
       }
+
+      #      dynamic "transition_default_minimum_object_size" {
+      #        for_each = [1] # This ensures that the transition_default_minimum_object_size is always included
+      #        content {
+      #          object_size_greater_than = var.object_size_greater_than
+      #          object_size_less_than    = var.object_size_less_than
+      #        }
+      #      }
     }
   }
 
   depends_on = [
-
     aws_s3_bucket_versioning.example
   ]
 }
