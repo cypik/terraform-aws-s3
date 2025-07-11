@@ -8,16 +8,13 @@ module "labels" {
   label_order = var.label_order
 }
 
-
 #tfsec:ignore:aws-s3-enable-bucket-encryption
 #tfsec:ignore:aws-s3-encryption-customer-key
 #tfsec:ignore:aws-s3-encryption-customer-key
 #tfsec:ignore:aws-s3-enable-bucket-logging
 #tfsec:ignore:aws-s3-enable-versioning
 resource "aws_s3_bucket" "s3_default" {
-  count = var.enabled == true ? 1 : 0
-
-
+  count               = var.enabled == true ? 1 : 0
   bucket              = var.s3_name != null ? var.s3_name : module.labels.id
   bucket_prefix       = var.bucket_prefix
   force_destroy       = var.force_destroy
@@ -536,7 +533,6 @@ resource "aws_s3_bucket_replication_configuration" "this" {
   depends_on = [aws_s3_bucket_versioning.example]
 }
 
-
 resource "aws_s3_bucket_public_access_block" "this" {
   count                   = var.enabled && var.attach_public_policy ? 1 : 0
   bucket                  = aws_s3_bucket.s3_default[0].id
@@ -545,7 +541,6 @@ resource "aws_s3_bucket_public_access_block" "this" {
   ignore_public_acls      = var.ignore_public_acls
   restrict_public_buckets = var.restrict_public_buckets
 }
-
 
 resource "aws_s3_bucket_ownership_controls" "this" {
   count = var.enabled && var.control_object_ownership ? 1 : 0
@@ -561,7 +556,6 @@ resource "aws_s3_bucket_ownership_controls" "this" {
     aws_s3_bucket.s3_default
   ]
 }
-
 
 resource "aws_s3_bucket_intelligent_tiering_configuration" "this" {
   for_each = { for k, v in var.intelligent_tiering : k => v if var.enabled }
@@ -693,7 +687,6 @@ resource "aws_s3_bucket_analytics_configuration" "default" {
     }
   }
 }
-
 
 data "aws_vpc_endpoint_service" "s3" {
   for_each     = { for ep in var.vpc_endpoints : ep.endpoint_count => ep }

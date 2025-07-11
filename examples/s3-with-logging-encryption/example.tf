@@ -8,8 +8,7 @@ locals {
 }
 
 module "logging_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "logging"
   s3_name     = "quya1"
   environment = local.environment
@@ -18,12 +17,11 @@ module "logging_bucket" {
 }
 
 module "kms_key" {
-  source      = "cypik/kms/aws"
-  version     = "1.0.1"
-  name        = "kms12"
-  environment = local.environment
-  label_order = local.label_order
-
+  source                  = "cypik/kms/aws"
+  version                 = "1.0.3"
+  name                    = "kms12"
+  environment             = local.environment
+  label_order             = local.label_order
   enabled                 = true
   description             = "KMS key for s3"
   deletion_window_in_days = 7
@@ -47,13 +45,11 @@ data "aws_iam_policy_document" "default" {
 }
 
 module "s3_bucket" {
-  source = "./../../"
-
-  name        = "test-logging-encryption-bucket"
-  s3_name     = "aqua1"
-  environment = local.environment
-  label_order = local.label_order
-
+  source                        = "./../../"
+  name                          = "test-logging-encryption-bucket"
+  s3_name                       = "aqua1"
+  environment                   = local.environment
+  label_order                   = local.label_order
   versioning                    = true
   acl                           = "private"
   enable_server_side_encryption = true

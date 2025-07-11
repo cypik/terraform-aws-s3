@@ -8,8 +8,7 @@ locals {
 }
 
 module "logging_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "logging-s3-test"
   s3_name     = "zanq11"
   environment = local.environment
