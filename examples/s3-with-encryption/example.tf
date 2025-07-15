@@ -9,7 +9,7 @@ locals {
 
 module "kms_key" {
   source                  = "cypik/kms/aws"
-  version                 = "1.0.1"
+  version                 = "1.0.3"
   name                    = "kms11"
   environment             = local.environment
   label_order             = local.label_order
@@ -36,12 +36,11 @@ data "aws_iam_policy_document" "default" {
 }
 
 module "s3_bucket" {
-  source      = "./../../"
-  name        = "test-encryption-bucket"
-  s3_name     = "dmzx"
-  environment = local.environment
-  label_order = local.label_order
-
+  source                        = "./../../"
+  name                          = "test-encryption-bucket"
+  s3_name                       = "dmzx"
+  environment                   = local.environment
+  label_order                   = local.label_order
   acl                           = "private"
   enable_server_side_encryption = true
   versioning                    = true

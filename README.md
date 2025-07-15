@@ -23,7 +23,7 @@ To use this module, you should have Terraform installed and configured for AWS. 
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -37,7 +37,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "arcx-13"
   environment = local.environment
   label_order = local.label_order
@@ -227,7 +227,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-secure-bucket"
   environment = local.environment
   label_order = local.label_order
@@ -250,7 +250,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-encryption-bucket"
   s3_name     = "dmzx"
   environment = local.environment
@@ -268,7 +268,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-logging-bucket"
 s3_name       = "wewrrt"
 environment   = local.environment
@@ -286,7 +286,7 @@ depends_on    = [module.logging_bucket]
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-logging-encryption-bucket"
   s3_name     = "aqua"
   environment = local.environment
@@ -309,7 +309,7 @@ module "s3_bucket" {
 ```hcl
 module "s3_bucket" {
   source      = "cypik/s3/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "test-s3"
   s3_name     = "poxord"
   environment = local.environment

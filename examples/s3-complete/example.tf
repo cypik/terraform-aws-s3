@@ -11,8 +11,7 @@ locals {
 data "aws_canonical_user_id" "current" {}
 
 module "logging_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "logging-x13"
   environment = local.environment
   label_order = local.label_order
@@ -22,7 +21,7 @@ module "logging_bucket" {
 
 module "vpc" {
   source      = "cypik/vpc/aws"
-  version     = "1.0.2"
+  version     = "1.0.3"
   name        = "app"
   environment = local.environment
   cidr_block  = "172.16.0.0/16"
@@ -30,11 +29,11 @@ module "vpc" {
 
 module "subnets" {
   source             = "cypik/subnet/aws"
-  version            = "1.0.2"
+  version            = "1.0.5"
   name               = "subnet"
   environment        = local.environment
   availability_zones = local.availability_zones
-  vpc_id             = module.vpc.id
+  vpc_id             = module.vpc.vpc_id
   cidr_block         = module.vpc.vpc_cidr_block
   type               = "private"
   igw_id             = module.vpc.igw_id
@@ -43,7 +42,7 @@ module "subnets" {
 
 module "kms_key" {
   source                  = "cypik/kms/aws"
-  version                 = "1.0.1"
+  version                 = "1.0.3"
   name                    = "kms11"
   environment             = local.environment
   label_order             = local.label_order
@@ -70,8 +69,7 @@ data "aws_iam_policy_document" "default" {
 }
 
 module "s3_bucket" {
-  source = "./../../"
-
+  source      = "./../../"
   name        = "arcx-13"
   environment = local.environment
   label_order = local.label_order
@@ -99,13 +97,13 @@ module "s3_bucket" {
   vpc_endpoints = [
     {
       endpoint_count = 1
-      vpc_id         = module.vpc.id
+      vpc_id         = module.vpc.vpc_id
       service_type   = "Interface"
       subnet_ids     = module.subnets.private_subnet_id
     },
     {
       endpoint_count = 2
-      vpc_id         = module.vpc.id
+      vpc_id         = module.vpc.vpc_id
       service_type   = "Gateway"
     }
   ]
