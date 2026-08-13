@@ -9,7 +9,7 @@ locals {
 
 module "kms_key" {
   source                  = "cypik/kms/aws"
-  version                 = "1.0.3"
+  version                 = "1.0.4"
   name                    = "kms11"
   environment             = local.environment
   label_order             = local.label_order
